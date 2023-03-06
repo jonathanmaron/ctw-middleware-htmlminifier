@@ -1,0 +1,40 @@
+<?php
+declare(strict_types=1);
+
+use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\TidyAdapter\TidyAdapter;
+use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\SimpleAdapter\SimpleAdapter;
+use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\WyriHaximusAdapter\WyriHaximusAdapter;
+use Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware;
+
+return [
+    HtmlMinifierMiddleware::class => [
+
+        SimpleAdapter::class      => [],
+
+        // composer require wyrihaximus/html-compress
+        /*
+        WyriHaximusAdapter::class => [],
+        */
+
+        /*
+        TidyAdapter::class        => [
+            'char-encoding'    => 'utf8',
+            'doctype'          => 'html5',
+            'bare'             => true,
+            'break-before-br'  => false,
+            'indent'           => false,
+            'logical-emphasis' => true,
+            'numeric-entities' => true,
+            'quiet'            => true,
+            'quote-ampersand'  => false,
+            'tidy-mark'        => false,
+            'uppercase-tags'   => false,
+            'vertical-space'   => false,
+            'wrap'             => 10000,
+            'wrap-attributes'  => false,
+            'write-back'       => true,
+        ],
+        */
+
+    ],
+];
