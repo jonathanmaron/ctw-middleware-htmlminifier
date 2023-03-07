@@ -7,8 +7,7 @@
         "php": "^8.0",
         "ext-tidy": "*",
         "ctw/ctw-middleware": "^3.0",
-        "psr/container": "^1.0 || ^2.0",
-        "wyrihaximus/html-compress": "^4.2"
+        "psr/container": "^1.0 || ^2.0"
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.1",
