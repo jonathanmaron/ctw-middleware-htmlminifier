@@ -10,7 +10,6 @@ parameters:
         - vendor/autoload.php
     paths:
         - src
-        - test
     fileExtensions:
         - php
     level: max

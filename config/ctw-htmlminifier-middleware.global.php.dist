@@ -7,16 +7,17 @@ use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\WyriHaximusAdapter\WyriHaximus
 use Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware;
 
 return [
+
     HtmlMinifierMiddleware::class => [
 
+        /*
         SimpleAdapter::class      => [],
+        */
 
-        // composer require wyrihaximus/html-compress
         /*
         WyriHaximusAdapter::class => [],
         */
 
-        /*
         TidyAdapter::class        => [
             'char-encoding'    => 'utf8',
             'doctype'          => 'html5',
@@ -34,7 +35,5 @@ return [
             'wrap-attributes'  => false,
             'write-back'       => true,
         ],
-        */
-
     ],
 ];

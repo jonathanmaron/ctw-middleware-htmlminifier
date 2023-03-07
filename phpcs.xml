@@ -5,7 +5,6 @@
     <description>PSR-2</description>
 
     <file>src</file>
-    <file>test</file>
 
     <arg name="extensions" value="php"/>
     <arg name="parallel" value="100"/>

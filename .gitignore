@@ -2,5 +2,5 @@
 .vscode
 build
 vendor
-.phpunit.result.cache
+.phpunit.cache
 composer.lock
