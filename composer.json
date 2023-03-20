@@ -1,5 +1,5 @@
 {
-    "name": "ctw/ctw-middleware-html-minifier",
+    "name": "ctw/ctw-middleware-htmlminifier",
     "description": "This PSR-15 middleware formats, fixes and beautifies the HTML in the Response body using a variety of adapters.",
     "license": "BSD-3-Clause",
     "type": "library",

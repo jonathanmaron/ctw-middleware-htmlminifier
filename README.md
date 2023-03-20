@@ -1,7 +1,7 @@
-# ctw-middleware-html-minifier
+# ctw-middleware-htmlminifier
 
 ```bash
-$ composer require ctw/ctw-middleware-html-minifier
+$ composer require ctw/ctw-middleware-htmlminifier
 ```
 
 If you want to use the `WyriHaximusAdapter` adapter, also install the following package:
