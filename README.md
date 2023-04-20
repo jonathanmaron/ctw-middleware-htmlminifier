@@ -1,7 +1,13 @@
-# Package "ctw/ctw-middleware-htmlminifier"
+# ctw-middleware-htmlminifier
 
-## Installation
+```bash
+$ composer require ctw/ctw-middleware-htmlminifier
+```
 
-Install this package using Composer:
+If you want to use the `WyriHaximusAdapter` adapter, also install the following package:
 
-`composer require ctw/ctw-middleware-htmlminifier`
+```bash
+$ composer require wyrihaximus/html-compress
+```
+
+
