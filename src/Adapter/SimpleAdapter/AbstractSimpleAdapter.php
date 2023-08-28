@@ -9,8 +9,6 @@ class AbstractSimpleAdapter extends ParentAbstractAdapter
 {
     protected function postProcess(string $htmlMinified): string
     {
-        $htmlMinified = $this->trim($htmlMinified);
-
-        return $htmlMinified;
+        return $this->trim($htmlMinified);
     }
 }

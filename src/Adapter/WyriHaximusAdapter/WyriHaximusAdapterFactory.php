@@ -25,7 +25,7 @@ class WyriHaximusAdapterFactory
 
         $adapter = new WyriHaximusAdapter();
 
-        if (count($config) > 0) {
+        if ((is_countable($config) ? count($config) : 0) > 0) {
             $adapter->setConfig($config);
         }
 

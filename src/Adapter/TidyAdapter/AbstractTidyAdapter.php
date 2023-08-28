@@ -10,9 +10,8 @@ class AbstractTidyAdapter extends ParentAbstractAdapter
     protected function postProcess(string $htmlMinified): string
     {
         $htmlMinified = $this->trim($htmlMinified);
-        $htmlMinified = $this->doctype($htmlMinified);
 
-        return $htmlMinified;
+        return $this->doctype($htmlMinified);
     }
 
     /**
@@ -20,9 +19,7 @@ class AbstractTidyAdapter extends ParentAbstractAdapter
      * This causes the browser to switch to quirks mode, which is undesirable.
      * This method re-adds the doctype in the case of HTML5.
      *
-     * @param string $html
      *
-     * @return string
      */
     private function doctype(string $html): string
     {

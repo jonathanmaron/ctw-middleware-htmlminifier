@@ -25,7 +25,7 @@ class HtmlMinifierMiddlewareFactory
             $config = $config[HtmlMinifierMiddleware::class] ?? [];
         }
 
-        if (1 !== count($config)) {
+        if (1 !== (is_countable($config) ? count($config) : 0)) {
             $format  = 'The config key for "%s" must be an array with one element';
             $message = sprintf($format, HtmlMinifierMiddleware::class);
             throw new Exception($message);

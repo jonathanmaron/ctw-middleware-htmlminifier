@@ -35,7 +35,7 @@ class HtmlMinifierMiddleware extends AbstractHtmlMinifierMiddleware
 
         $htmlSource = $response->getBody()->getContents();
 
-        if (0 === strlen($htmlSource)) {
+        if ($htmlSource === '') {
             return $response;
         }
 
