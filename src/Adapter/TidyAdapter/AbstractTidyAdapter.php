@@ -18,8 +18,6 @@ class AbstractTidyAdapter extends ParentAbstractAdapter
      * Tidy removes the doctype when parsing HTML5 (bug?).
      * This causes the browser to switch to quirks mode, which is undesirable.
      * This method re-adds the doctype in the case of HTML5.
-     *
-     *
      */
     private function doctype(string $html): string
     {

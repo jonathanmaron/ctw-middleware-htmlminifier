@@ -1,0 +1,199 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to function is_countable\(\) with array\<mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Adapter/SimpleAdapter/SimpleAdapterFactory.php
+
+		-
+			message: '#^Call to function is_countable\(\) with array\<mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Adapter/TidyAdapter/TidyAdapterFactory.php
+
+		-
+			message: '#^Call to method doMakeSameDomainsLinksRelative\(\) on an unknown class voku\\helper\\HtmlMin\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
+
+		-
+			message: '#^Call to method doRemoveOmittedQuotes\(\) on an unknown class voku\\helper\\HtmlMin\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
+
+		-
+			message: '#^Call to method doRemoveSpacesBetweenTags\(\) on an unknown class voku\\helper\\HtmlMin\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
+
+		-
+			message: '#^Cannot call method withHtmlMin\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
+
+		-
+			message: '#^Call to function is_countable\(\) with array\<mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapterFactory.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/HtmlMinifierMiddleware.php
+
+		-
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/HtmlMinifierMiddleware.php
+
+		-
+			message: '#^Parameter \#4 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/HtmlMinifierMiddleware.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_key_first expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/HtmlMinifierMiddlewareFactory.php
+
+		-
+			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\AbstractAdapter\:\:callTrim\(\)\.$#'
+			identifier: method.notFound
+			count: 5
+			path: test/Adapter/AbstractAdapterTest.php
+
+		-
+			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\SimpleAdapter\\AbstractSimpleAdapter\:\:callPostProcess\(\)\.$#'
+			identifier: method.notFound
+			count: 7
+			path: test/Adapter/SimpleAdapter/AbstractSimpleAdapterTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertIsString\(\) with string will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: test/Adapter/SimpleAdapter/SimpleAdapterTest.php
+
+		-
+			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\TidyAdapter\\AbstractTidyAdapter\:\:callPostProcess\(\)\.$#'
+			identifier: method.notFound
+			count: 12
+			path: test/Adapter/TidyAdapter/AbstractTidyAdapterTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: test/Adapter/TidyAdapter/AbstractTidyAdapterTest.php
+
+		-
+			message: '#^Parameter \#2 \$string of static method PHPUnit\\Framework\\Assert\:\:assertStringStartsWith\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: test/Adapter/TidyAdapter/AbstractTidyAdapterTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertIsString\(\) with string will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 7
+			path: test/Adapter/TidyAdapter/TidyAdapterTest.php
+
+		-
+			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\WyriHaximusAdapter\\AbstractWyriHaximusAdapter\:\:callPostProcess\(\)\.$#'
+			identifier: method.notFound
+			count: 10
+			path: test/Adapter/WyriHaximusAdapter/AbstractWyriHaximusAdapterTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertIsString\(\) with string will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 5
+			path: test/Adapter/WyriHaximusAdapter/WyriHaximusAdapterTest.php
+
+		-
+			message: '#^Property CtwTest\\Middleware\\HtmlMinifierMiddleware\\Adapter\\WyriHaximusAdapter\\WyriHaximusAdapterTest\:\:\$originalHttpHost \(string\|null\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: test/Adapter/WyriHaximusAdapter/WyriHaximusAdapterTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertIsArray\(\) with array will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 2
+			path: test/ConfigProviderTest.php
+
+		-
+			message: '#^Cannot access offset ''Ctw\\\\Middleware\\\\HtmlMinifierMiddleware\\\\Adapter\\\\SimpleAdapter\\\\SimpleAdapter'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: test/ConfigProviderTest.php
+
+		-
+			message: '#^Cannot access offset ''Ctw\\\\Middleware\\\\HtmlMinifierMiddleware\\\\Adapter\\\\TidyAdapter\\\\TidyAdapter'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: test/ConfigProviderTest.php
+
+		-
+			message: '#^Cannot access offset ''Ctw\\\\Middleware\\\\HtmlMinifierMiddleware\\\\Adapter\\\\WyriHaximusAdapter\\\\WyriHaximusAdapter'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: test/ConfigProviderTest.php
+
+		-
+			message: '#^Cannot access offset ''Ctw\\\\Middleware\\\\HtmlMinifierMiddleware\\\\HtmlMinifierMiddleware'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: test/ConfigProviderTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: test/ConfigProviderTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertCount\(\) expects Countable\|iterable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: test/ConfigProviderTest.php
+
+		-
+			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\AdapterInterface\:\:expects\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: test/HtmlMinifierMiddlewareTest.php
+
+		-
+			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\AdapterInterface\:\:method\(\)\.$#'
+			identifier: method.notFound
+			count: 7
+			path: test/HtmlMinifierMiddlewareTest.php
+
+		-
+			message: '#^Cannot call method method\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: test/HtmlMinifierMiddlewareTest.php
+
+		-
+			message: '#^Cannot call method willReturn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 8
+			path: test/HtmlMinifierMiddlewareTest.php
+
+		-
+			message: '#^Cannot call method with\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 8
+			path: test/HtmlMinifierMiddlewareTest.php

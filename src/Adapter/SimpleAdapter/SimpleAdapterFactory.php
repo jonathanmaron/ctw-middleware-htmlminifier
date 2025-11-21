@@ -4,23 +4,21 @@ declare(strict_types=1);
 namespace Ctw\Middleware\HtmlMinifierMiddleware\Adapter\SimpleAdapter;
 
 use Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware;
-use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 
 class SimpleAdapterFactory
 {
-    /**
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
     public function __invoke(ContainerInterface $container): SimpleAdapter
     {
         $config = [];
         if ($container->has('config')) {
-            $config = $container->get('config');
-            assert(is_array($config));
-            $config = $config[HtmlMinifierMiddleware::class][SimpleAdapter::class] ?? [];
+            $globalConfig = $container->get('config');
+            assert(is_array($globalConfig));
+            $middlewareConfig = $globalConfig[HtmlMinifierMiddleware::class] ?? [];
+            assert(is_array($middlewareConfig));
+            $adapterConfig = $middlewareConfig[SimpleAdapter::class] ?? [];
+            assert(is_array($adapterConfig));
+            $config = $adapterConfig;
         }
 
         $adapter = new SimpleAdapter();

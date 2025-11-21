@@ -18,7 +18,7 @@ class HtmlMinifierMiddleware extends AbstractHtmlMinifierMiddleware
         return $this->adapter;
     }
 
-    public function setAdapter(AdapterInterface $adapter): HtmlMinifierMiddleware
+    public function setAdapter(AdapterInterface $adapter): self
     {
         $this->adapter = $adapter;
 
@@ -33,13 +33,15 @@ class HtmlMinifierMiddleware extends AbstractHtmlMinifierMiddleware
             return $response;
         }
 
-        $htmlSource = $response->getBody()->getContents();
+        $htmlSource = $response->getBody()
+            ->getContents();
 
-        if ($htmlSource === '') {
+        if ('' === $htmlSource) {
             return $response;
         }
 
-        $htmlMinified = $this->getAdapter()->minify($htmlSource);
+        $htmlMinified = $this->getAdapter()
+            ->minify($htmlSource);
 
         [$in, $out, $diff] = $this->getSuffixStatistics($htmlSource, $htmlMinified);
 

@@ -7,5 +7,4 @@ use Ctw\Middleware\AbstractMiddleware;
 
 abstract class AbstractHtmlMinifierMiddleware extends AbstractMiddleware
 {
-
 }

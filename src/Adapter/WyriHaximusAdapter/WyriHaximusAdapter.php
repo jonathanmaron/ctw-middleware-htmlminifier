@@ -11,6 +11,7 @@ class WyriHaximusAdapter extends AbstractWyriHaximusAdapter implements AdapterIn
 {
     public function minify(string $htmlSource): string
     {
+        /** @phpstan-ignore class.notFound */
         $htmlMin = new HtmlMin();
 
         $httpHost = '';
@@ -91,7 +92,9 @@ class WyriHaximusAdapter extends AbstractWyriHaximusAdapter implements AdapterIn
         // remove omitted html tags e.g. <p>lall</p> => <p>lall
         // $htmlMin->doRemoveOmittedHtmlTags();
 
+        /** @phpstan-ignore class.notFound, method.nonObject */
         $htmlModified = Factory::constructSmallest()->withHtmlMin($htmlMin)->compress($htmlSource);
+        assert(is_string($htmlModified));
 
         return $this->postProcess($htmlModified);
     }

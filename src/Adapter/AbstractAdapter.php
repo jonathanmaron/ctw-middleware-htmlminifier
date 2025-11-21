@@ -12,7 +12,7 @@ abstract class AbstractAdapter
         return $this->config;
     }
 
-    public function setConfig(array $config): AbstractAdapter
+    public function setConfig(array $config): self
     {
         $this->config = $config;
 

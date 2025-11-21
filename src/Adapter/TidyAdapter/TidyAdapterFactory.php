@@ -4,23 +4,21 @@ declare(strict_types=1);
 namespace Ctw\Middleware\HtmlMinifierMiddleware\Adapter\TidyAdapter;
 
 use Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware;
-use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 
 class TidyAdapterFactory
 {
-    /**
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
     public function __invoke(ContainerInterface $container): TidyAdapter
     {
         $config = [];
         if ($container->has('config')) {
-            $config = $container->get('config');
-            assert(is_array($config));
-            $config = $config[HtmlMinifierMiddleware::class][TidyAdapter::class] ?? [];
+            $globalConfig = $container->get('config');
+            assert(is_array($globalConfig));
+            $middlewareConfig = $globalConfig[HtmlMinifierMiddleware::class] ?? [];
+            assert(is_array($middlewareConfig));
+            $adapterConfig = $middlewareConfig[TidyAdapter::class] ?? [];
+            assert(is_array($adapterConfig));
+            $config = $adapterConfig;
         }
 
         $adapter = new TidyAdapter();

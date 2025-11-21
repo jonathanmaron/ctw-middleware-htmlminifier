@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Ctw\Middleware\HtmlMinifierMiddleware\Adapter\TidyAdapter;
 
-use tidy;
 use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\AdapterInterface;
+use tidy;
 
 class TidyAdapter extends AbstractTidyAdapter implements AdapterInterface
 {

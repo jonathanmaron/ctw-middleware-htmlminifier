@@ -3,19 +3,12 @@ declare(strict_types=1);
 
 namespace Ctw\Middleware\HtmlMinifierMiddleware;
 
-use Exception;
 use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\AdapterInterface;
-use Psr\Container\ContainerExceptionInterface;
+use Exception;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 
 class HtmlMinifierMiddlewareFactory
 {
-    /**
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws Exception
-     */
     public function __invoke(ContainerInterface $container): HtmlMinifierMiddleware
     {
         $config = [];
