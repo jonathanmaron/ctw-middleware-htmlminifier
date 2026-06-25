@@ -22,7 +22,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     {
         parent::setUp();
         $this->htmlMinifierMiddleware = new HtmlMinifierMiddleware();
-        $this->adapter = $this->createMock(AdapterInterface::class);
+        $this->adapter = $this->createStub(AdapterInterface::class);
         $this->htmlMinifierMiddleware->setAdapter($this->adapter);
     }
 
@@ -31,7 +31,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testGetAdapterReturnsSetAdapter(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
         $this->htmlMinifierMiddleware->setAdapter($adapter);
 
         $result = $this->htmlMinifierMiddleware->getAdapter();
@@ -44,7 +44,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testSetAdapterReturnsSelfForMethodChaining(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
 
         $result = $this->htmlMinifierMiddleware->setAdapter($adapter);
 
@@ -56,7 +56,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testSetAdapterSetsAdapterCorrectly(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
 
         $this->htmlMinifierMiddleware->setAdapter($adapter);
 
@@ -68,15 +68,13 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessReturnsResponseUnchangedWhenNotHtml(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['application/json']);
 
         $result = $this->htmlMinifierMiddleware->process($request, $handler);
@@ -89,15 +87,13 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessReturnsResponseUnchangedWhenNoContentTypeHeader(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn([]);
 
         $result = $this->htmlMinifierMiddleware->process($request, $handler);
@@ -110,26 +106,23 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessMinifiesHtmlWhenContentTypeIsTextHtml(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>  Test  </body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html']);
         $response->method('getBody')
             ->willReturn($body);
         $body->method('getContents')
             ->willReturn($htmlSource);
         $this->adapter->method('minify')
-            ->with($htmlSource)
             ->willReturn($htmlMinified);
         $response->method('withBody')
             ->willReturn($response);
@@ -144,26 +137,23 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessMinifiesHtmlWhenContentTypeIsApplicationXhtml(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['application/xhtml']);
         $response->method('getBody')
             ->willReturn($body);
         $body->method('getContents')
             ->willReturn($htmlSource);
         $this->adapter->method('minify')
-            ->with($htmlSource)
             ->willReturn($htmlMinified);
         $response->method('withBody')
             ->willReturn($response);
@@ -178,16 +168,14 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessReturnsResponseUnchangedWhenHtmlBodyIsEmpty(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html']);
         $response->method('getBody')
             ->willReturn($body);
@@ -204,19 +192,19 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessCallsAdapterMinifyMethod(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
+        $adapter = $this->createMock(AdapterInterface::class);
+        $this->htmlMinifierMiddleware->setAdapter($adapter);
 
         $htmlSource = '<html><body>Original</body></html>';
         $htmlMinified = '<html><body>Minified</body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html']);
         $response->method('getBody')
             ->willReturn($body);
@@ -225,7 +213,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
         $response->method('withBody')
             ->willReturn($response);
 
-        $this->adapter->expects(self::once())
+        $adapter->expects(self::once())
             ->method('minify')
             ->with($htmlSource)
             ->willReturn($htmlMinified);
@@ -238,26 +226,23 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessAddsStatisticsSuffixToMinifiedHtml(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Original Content Here</body></html>';
         $htmlMinified = '<html><body>Minified</body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html']);
         $response->method('getBody')
             ->willReturn($body);
         $body->method('getContents')
             ->willReturn($htmlSource);
         $this->adapter->method('minify')
-            ->with($htmlSource)
             ->willReturn($htmlMinified);
 
         $response->expects(self::once())
@@ -273,26 +258,23 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessHandlesHtmlWithCharsetInContentType(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html; charset=utf-8']);
         $response->method('getBody')
             ->willReturn($body);
         $body->method('getContents')
             ->willReturn($htmlSource);
         $this->adapter->method('minify')
-            ->with($htmlSource)
             ->willReturn($htmlMinified);
         $response->method('withBody')
             ->willReturn($response);
@@ -307,26 +289,23 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessHandlesMultipleContentTypeHeaders(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html', 'charset=utf-8']);
         $response->method('getBody')
             ->willReturn($body);
         $body->method('getContents')
             ->willReturn($htmlSource);
         $this->adapter->method('minify')
-            ->with($htmlSource)
             ->willReturn($htmlMinified);
         $response->method('withBody')
             ->willReturn($response);
@@ -341,18 +320,18 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessDoesNotMinifyWhenContentTypeIsTextPlain(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $adapter = $this->createMock(AdapterInterface::class);
+        $this->htmlMinifierMiddleware->setAdapter($adapter);
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/plain']);
 
-        $this->adapter->expects(self::never())->method('minify');
+        $adapter->expects(self::never())->method('minify');
 
         $result = $this->htmlMinifierMiddleware->process($request, $handler);
 
@@ -364,18 +343,18 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessDoesNotMinifyWhenContentTypeIsApplicationJson(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $adapter = $this->createMock(AdapterInterface::class);
+        $this->htmlMinifierMiddleware->setAdapter($adapter);
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['application/json']);
 
-        $this->adapter->expects(self::never())->method('minify');
+        $adapter->expects(self::never())->method('minify');
 
         $result = $this->htmlMinifierMiddleware->process($request, $handler);
 
@@ -387,10 +366,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessHandlesComplexHtmlDocument(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
 
         $htmlSource = <<<HTML
 <!DOCTYPE html>
@@ -409,17 +388,14 @@ HTML;
         $htmlMinified = '<!DOCTYPE html><html><head><title>Test Page</title></head><body><div class="container"><h1>Welcome</h1><p>This is a test.</p></div></body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html; charset=utf-8']);
         $response->method('getBody')
             ->willReturn($body);
         $body->method('getContents')
             ->willReturn($htmlSource);
         $this->adapter->method('minify')
-            ->with($htmlSource)
             ->willReturn($htmlMinified);
         $response->method('withBody')
             ->willReturn($response);
@@ -434,27 +410,24 @@ HTML;
      */
     public function testProcessCreatesNewStreamWithMinifiedContent(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createMock(RequestHandlerInterface::class);
-        $body = $this->createMock(StreamInterface::class);
-        $newResponse = $this->createMock(ResponseInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
+        $handler = $this->createStub(RequestHandlerInterface::class);
+        $body = $this->createStub(StreamInterface::class);
+        $newResponse = $this->createStub(ResponseInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
 
         $handler->method('handle')
-            ->with($request)
             ->willReturn($response);
         $response->method('getHeader')
-            ->with('Content-Type')
             ->willReturn(['text/html']);
         $response->method('getBody')
             ->willReturn($body);
         $body->method('getContents')
             ->willReturn($htmlSource);
         $this->adapter->method('minify')
-            ->with($htmlSource)
             ->willReturn($htmlMinified);
         $response->method('withBody')
             ->willReturn($newResponse);

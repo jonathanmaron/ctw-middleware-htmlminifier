@@ -25,7 +25,7 @@ final class SimpleAdapterFactoryTest extends TestCase
      */
     public function testInvokeReturnsSimpleAdapterInstance(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(false);
 
@@ -39,9 +39,8 @@ final class SimpleAdapterFactoryTest extends TestCase
      */
     public function testInvokeCreatesAdapterWithoutConfigWhenContainerHasNoConfig(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(false);
 
         $result = ($this->simpleAdapterFactory)($container);
@@ -55,12 +54,10 @@ final class SimpleAdapterFactoryTest extends TestCase
      */
     public function testInvokeCreatesAdapterWithEmptyConfigWhenConfigIsEmpty(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn([]);
 
         $result = ($this->simpleAdapterFactory)($container);
@@ -84,12 +81,10 @@ final class SimpleAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn($config);
 
         $result = ($this->simpleAdapterFactory)($container);
@@ -116,12 +111,10 @@ final class SimpleAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn($config);
 
         $result = ($this->simpleAdapterFactory)($container);
@@ -141,12 +134,10 @@ final class SimpleAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn($config);
 
         $result = ($this->simpleAdapterFactory)($container);
@@ -168,12 +159,10 @@ final class SimpleAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn($config);
 
         $result = ($this->simpleAdapterFactory)($container);
@@ -193,12 +182,10 @@ final class SimpleAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn($config);
 
         $result = ($this->simpleAdapterFactory)($container);

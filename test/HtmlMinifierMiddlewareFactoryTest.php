@@ -27,10 +27,9 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeReturnsHtmlMinifierMiddlewareInstance(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
-        $container = $this->createMock(ContainerInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
             ->willReturnMap([
@@ -53,12 +52,10 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeThrowsExceptionWhenConfigHasNoElements(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn([
                 HtmlMinifierMiddleware::class => [],
             ]);
@@ -76,12 +73,10 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeThrowsExceptionWhenConfigHasMultipleElements(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn([
                 HtmlMinifierMiddleware::class => [
                     SimpleAdapter::class => [],
@@ -102,13 +97,11 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeCreatesMiddlewareWhenContainerHasNoConfig(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
-        $container = $this->createMock(ContainerInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(false);
         $container->method('get')
-            ->with(0)
             ->willReturn($adapter);
 
         $this->expectException(Exception::class);
@@ -124,10 +117,9 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeRetrievesAdapterFromContainer(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
-        $container = $this->createMock(ContainerInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
             ->willReturnMap([
@@ -150,12 +142,11 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeSetsAdapterOnMiddleware(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
         $adapterClass = 'CustomAdapter';
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
             ->willReturnMap([
@@ -181,7 +172,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeHandlesConfigWithExactlyOneAdapter(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
         $config = [
             HtmlMinifierMiddleware::class => [
                 SimpleAdapter::class => [
@@ -190,9 +181,8 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
             ->willReturnMap([['config', $config], [SimpleAdapter::class, $adapter]]);
@@ -207,7 +197,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeExtractsFirstKeyAsAdapterClassName(): void
     {
-        $adapter = $this->createMock(AdapterInterface::class);
+        $adapter = $this->createStub(AdapterInterface::class);
         $adapterClassName = 'MyCustomAdapter';
         $config = [
             HtmlMinifierMiddleware::class => [
@@ -215,9 +205,8 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
             ->willReturnCallback(function ($key) use ($config, $adapter, $adapterClassName) {
@@ -241,12 +230,10 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeThrowsExceptionWhenMiddlewareConfigIsMissing(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn([
                 'SomeOtherMiddleware' => [
                     'adapter' => [],
@@ -266,12 +253,10 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeHandlesEmptyGlobalConfig(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $container->method('has')
-            ->with('config')
             ->willReturn(true);
         $container->method('get')
-            ->with('config')
             ->willReturn([]);
 
         $this->expectException(Exception::class);
