@@ -22,7 +22,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     {
         parent::setUp();
         $this->htmlMinifierMiddleware = new HtmlMinifierMiddleware();
-        $this->adapter = $this->createStub(AdapterInterface::class);
+        $this->adapter = self::createStub(AdapterInterface::class);
         $this->htmlMinifierMiddleware->setAdapter($this->adapter);
     }
 
@@ -31,7 +31,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testGetAdapterReturnsSetAdapter(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
         $this->htmlMinifierMiddleware->setAdapter($adapter);
 
         $result = $this->htmlMinifierMiddleware->getAdapter();
@@ -44,7 +44,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testSetAdapterReturnsSelfForMethodChaining(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
 
         $result = $this->htmlMinifierMiddleware->setAdapter($adapter);
 
@@ -56,7 +56,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testSetAdapterSetsAdapterCorrectly(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
 
         $this->htmlMinifierMiddleware->setAdapter($adapter);
 
@@ -68,9 +68,9 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessReturnsResponseUnchangedWhenNotHtml(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
 
         $handler->method('handle')
             ->willReturn($response);
@@ -87,9 +87,9 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessReturnsResponseUnchangedWhenNoContentTypeHeader(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
 
         $handler->method('handle')
             ->willReturn($response);
@@ -106,10 +106,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessMinifiesHtmlWhenContentTypeIsTextHtml(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>  Test  </body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
@@ -137,10 +137,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessMinifiesHtmlWhenContentTypeIsApplicationXhtml(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
@@ -168,10 +168,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessReturnsResponseUnchangedWhenHtmlBodyIsEmpty(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
         $handler->method('handle')
             ->willReturn($response);
@@ -192,10 +192,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessCallsAdapterMinifyMethod(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
         $adapter = $this->createMock(AdapterInterface::class);
         $this->htmlMinifierMiddleware->setAdapter($adapter);
 
@@ -226,10 +226,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessAddsStatisticsSuffixToMinifiedHtml(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
         $response = $this->createMock(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Original Content Here</body></html>';
         $htmlMinified = '<html><body>Minified</body></html>';
@@ -258,10 +258,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessHandlesHtmlWithCharsetInContentType(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
@@ -289,10 +289,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessHandlesMultipleContentTypeHeaders(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';
@@ -320,9 +320,9 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessDoesNotMinifyWhenContentTypeIsTextPlain(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
         $adapter = $this->createMock(AdapterInterface::class);
         $this->htmlMinifierMiddleware->setAdapter($adapter);
 
@@ -343,9 +343,9 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessDoesNotMinifyWhenContentTypeIsApplicationJson(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
         $adapter = $this->createMock(AdapterInterface::class);
         $this->htmlMinifierMiddleware->setAdapter($adapter);
 
@@ -366,10 +366,10 @@ final class HtmlMinifierMiddlewareTest extends TestCase
      */
     public function testProcessHandlesComplexHtmlDocument(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
 
         $htmlSource = <<<HTML
 <!DOCTYPE html>
@@ -410,11 +410,11 @@ HTML;
      */
     public function testProcessCreatesNewStreamWithMinifiedContent(): void
     {
-        $request = $this->createStub(ServerRequestInterface::class);
-        $response = $this->createStub(ResponseInterface::class);
-        $handler = $this->createStub(RequestHandlerInterface::class);
-        $body = $this->createStub(StreamInterface::class);
-        $newResponse = $this->createStub(ResponseInterface::class);
+        $request = self::createStub(ServerRequestInterface::class);
+        $response = self::createStub(ResponseInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
+        $body = self::createStub(StreamInterface::class);
+        $newResponse = self::createStub(ResponseInterface::class);
 
         $htmlSource = '<html><body>Test</body></html>';
         $htmlMinified = '<html><body>Test</body></html>';

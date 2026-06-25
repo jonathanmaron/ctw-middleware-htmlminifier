@@ -25,7 +25,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
      */
     public function testInvokeReturnsWyriHaximusAdapterInstance(): void
     {
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(false);
 
@@ -39,7 +39,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
      */
     public function testInvokeCreatesAdapterWithoutConfigWhenContainerHasNoConfig(): void
     {
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(false);
 
@@ -54,7 +54,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
      */
     public function testInvokeCreatesAdapterWithEmptyConfigWhenConfigIsEmpty(): void
     {
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -81,7 +81,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -111,7 +111,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -134,7 +134,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -159,7 +159,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -182,7 +182,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')

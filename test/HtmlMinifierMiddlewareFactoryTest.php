@@ -27,8 +27,8 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeReturnsHtmlMinifierMiddlewareInstance(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
-        $container = $this->createStub(ContainerInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -52,7 +52,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeThrowsExceptionWhenConfigHasNoElements(): void
     {
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -73,7 +73,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeThrowsExceptionWhenConfigHasMultipleElements(): void
     {
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -97,8 +97,8 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeCreatesMiddlewareWhenContainerHasNoConfig(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
-        $container = $this->createStub(ContainerInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(false);
         $container->method('get')
@@ -117,8 +117,8 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeRetrievesAdapterFromContainer(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
-        $container = $this->createStub(ContainerInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -142,10 +142,10 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeSetsAdapterOnMiddleware(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
         $adapterClass = 'CustomAdapter';
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -172,7 +172,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeHandlesConfigWithExactlyOneAdapter(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
         $config = [
             HtmlMinifierMiddleware::class => [
                 SimpleAdapter::class => [
@@ -181,7 +181,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -197,7 +197,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeExtractsFirstKeyAsAdapterClassName(): void
     {
-        $adapter = $this->createStub(AdapterInterface::class);
+        $adapter = self::createStub(AdapterInterface::class);
         $adapterClassName = 'MyCustomAdapter';
         $config = [
             HtmlMinifierMiddleware::class => [
@@ -205,7 +205,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ],
         ];
 
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -230,7 +230,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeThrowsExceptionWhenMiddlewareConfigIsMissing(): void
     {
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
@@ -253,7 +253,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
      */
     public function testInvokeHandlesEmptyGlobalConfig(): void
     {
-        $container = $this->createStub(ContainerInterface::class);
+        $container = self::createStub(ContainerInterface::class);
         $container->method('has')
             ->willReturn(true);
         $container->method('get')
