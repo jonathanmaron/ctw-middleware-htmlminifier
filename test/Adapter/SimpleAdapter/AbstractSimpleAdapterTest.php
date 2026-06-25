@@ -28,7 +28,7 @@ final class AbstractSimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess trims whitespace
+     * Test that postProcess removes the surrounding whitespace when given a string padded with leading and trailing whitespace.
      */
     public function testPostProcessTrimsWhitespace(): void
     {
@@ -41,7 +41,7 @@ final class AbstractSimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles empty string
+     * Test that postProcess returns an empty string when given an empty string.
      */
     public function testPostProcessHandlesEmptyString(): void
     {
@@ -54,7 +54,7 @@ final class AbstractSimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles string with no whitespace
+     * Test that postProcess returns the input unchanged when given a string that has no surrounding whitespace.
      */
     public function testPostProcessHandlesStringWithNoWhitespace(): void
     {
@@ -67,7 +67,7 @@ final class AbstractSimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles string with only whitespace
+     * Test that postProcess returns an empty string when given a string composed entirely of whitespace.
      */
     public function testPostProcessHandlesStringWithOnlyWhitespace(): void
     {
@@ -80,7 +80,7 @@ final class AbstractSimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess preserves internal whitespace
+     * Test that postProcess removes only the surrounding whitespace when given a string that also contains internal whitespace.
      */
     public function testPostProcessPreservesInternalWhitespace(): void
     {
@@ -93,7 +93,7 @@ final class AbstractSimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess removes leading newlines and tabs
+     * Test that postProcess removes the leading whitespace when given a string prefixed with newlines and tabs.
      */
     public function testPostProcessRemovesLeadingNewlinesAndTabs(): void
     {
@@ -106,7 +106,7 @@ final class AbstractSimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess removes trailing newlines and tabs
+     * Test that postProcess removes the trailing whitespace when given a string suffixed with newlines and tabs.
      */
     public function testPostProcessRemovesTrailingNewlinesAndTabs(): void
     {

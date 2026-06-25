@@ -18,7 +18,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify returns string
+     * Test that minify returns a string when given valid HTML markup.
      */
     public function testMinifyReturnsString(): void
     {
@@ -30,7 +30,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles empty string
+     * Test that minify returns an empty string when given an empty string.
      */
     public function testMinifyHandlesEmptyString(): void
     {
@@ -43,7 +43,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify removes HTML comments
+     * Test that minify removes the comment while keeping the content when given HTML containing an HTML comment.
      */
     public function testMinifyRemovesHtmlComments(): void
     {
@@ -56,7 +56,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify removes multiple HTML comments
+     * Test that minify removes every comment while keeping the content when given HTML containing multiple HTML comments.
      */
     public function testMinifyRemovesMultipleHtmlComments(): void
     {
@@ -71,7 +71,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify removes leading spaces and tabs
+     * Test that minify removes leading spaces and tabs when given HTML with indentation after newlines.
      */
     public function testMinifyRemovesLeadingSpacesAndTabs(): void
     {
@@ -84,7 +84,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify replaces newlines with spaces
+     * Test that minify replaces newlines with spaces while preserving the content when given multi-line HTML.
      */
     public function testMinifyReplacesNewlinesWithSpaces(): void
     {
@@ -99,7 +99,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify removes multiple spaces between tags
+     * Test that minify collapses runs of spaces when given HTML with multiple spaces between tags.
      */
     public function testMinifyRemovesMultipleSpacesBetweenTags(): void
     {
@@ -111,7 +111,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify strips whitespace between quote and end tag
+     * Test that minify strips the whitespace when given HTML with whitespace between a closing attribute quote and the tag's closing bracket.
      */
     public function testMinifyStripsWhitespaceBetweenQuoteAndEndTag(): void
     {
@@ -125,7 +125,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify strips whitespace between equals and quote
+     * Test that minify strips the whitespace when given HTML with whitespace between an attribute's equals sign and its opening quote.
      */
     public function testMinifyStripsWhitespaceBetweenEqualsAndQuote(): void
     {
@@ -138,7 +138,7 @@ final class SimpleAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles complex HTML document
+     * Test that minify removes comments and newlines while preserving the text content when given a complete multi-line HTML document.
      */
     public function testMinifyHandlesComplexHtmlDocument(): void
     {
@@ -170,7 +170,7 @@ HTML;
     }
 
     /**
-     * Test that minify preserves content inside tags
+     * Test that minify preserves the text content when given HTML wrapping that content in a tag.
      */
     public function testMinifyPreservesContentInsideTags(): void
     {
@@ -182,7 +182,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with inline styles
+     * Test that minify preserves the inline style attribute and text when given HTML with an inline style attribute.
      */
     public function testMinifyHandlesHtmlWithInlineStyles(): void
     {
@@ -195,7 +195,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with single quotes
+     * Test that minify strips the whitespace before the closing bracket when given HTML using single-quoted attributes.
      */
     public function testMinifyHandlesHtmlWithSingleQuotes(): void
     {
@@ -209,7 +209,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with script tags
+     * Test that minify preserves the script contents and surrounding text when given HTML containing a script tag.
      */
     public function testMinifyHandlesHtmlWithScriptTags(): void
     {
@@ -222,7 +222,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with style tags
+     * Test that minify preserves the style contents and surrounding text when given HTML containing a style tag.
      */
     public function testMinifyHandlesHtmlWithStyleTags(): void
     {
@@ -235,7 +235,7 @@ HTML;
     }
 
     /**
-     * Test that minify trims final output
+     * Test that minify trims the final output so it has no leading or trailing space when given HTML padded with surrounding whitespace.
      */
     public function testMinifyTrimsFinalOutput(): void
     {
@@ -248,7 +248,7 @@ HTML;
     }
 
     /**
-     * Test that minify reduces whitespace between tags to single space
+     * Test that minify reduces the gap between tags to a single space when given HTML with many spaces between sibling tags.
      */
     public function testMinifyReducesWhitespaceBetweenTagsToSingleSpace(): void
     {
@@ -260,7 +260,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles nested tags correctly
+     * Test that minify preserves the list item text and removes newlines when given multi-line HTML with nested tags.
      */
     public function testMinifyHandlesNestedTagsCorrectly(): void
     {

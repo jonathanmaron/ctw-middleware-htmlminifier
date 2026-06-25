@@ -7,6 +7,8 @@ namespace CtwTest\Middleware\HtmlMinifierMiddleware\Adapter\TidyAdapter;
 use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\TidyAdapter\TidyAdapter;
 use PHPUnit\Framework\TestCase;
 
+require_once __DIR__ . '/TidyCleanRepairOverride.php';
+
 final class TidyAdapterTest extends TestCase
 {
     private TidyAdapter $tidyAdapter;
@@ -23,9 +25,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify returns string
+     * Test that minify returns a string when given well-formed HTML.
      */
-    public function testMinifyReturnsString(): void
+    public function testMinifyReturnsStringWhenGivenWellFormedHtml(): void
     {
         $html = '<html><body>Test</body></html>';
 
@@ -35,9 +37,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles basic HTML
+     * Test that minify preserves the text content when given basic HTML.
      */
-    public function testMinifyHandlesBasicHtml(): void
+    public function testMinifyPreservesTextContentWhenGivenBasicHtml(): void
     {
         $html = '<html><body><p>Test content</p></body></html>';
 
@@ -47,9 +49,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify cleans malformed HTML
+     * Test that minify preserves the content when cleaning and repairing malformed HTML.
      */
-    public function testMinifyCleansAndRepairsMalformedHtml(): void
+    public function testMinifyPreservesContentWhenRepairingMalformedHtml(): void
     {
         $html = '<div><p>Unclosed paragraph<div>Nested incorrectly</div>';
 
@@ -61,9 +63,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify with custom config applies configuration
+     * Test that minify returns a string when a custom tidy configuration is applied.
      */
-    public function testMinifyWithCustomConfigAppliesConfiguration(): void
+    public function testMinifyReturnsStringWhenCustomConfigIsApplied(): void
     {
         $config = [
             'indent' => false,
@@ -79,9 +81,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify trims output
+     * Test that minify trims leading whitespace when post-processing the output.
      */
-    public function testMinifyTrimsOutput(): void
+    public function testMinifyTrimsLeadingWhitespaceWhenPostProcessing(): void
     {
         $html = '<html><body>Content</body></html>';
 
@@ -92,9 +94,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles empty string gracefully
+     * Test that minify returns a string when given an empty input string.
      */
-    public function testMinifyHandlesEmptyStringGracefully(): void
+    public function testMinifyReturnsStringWhenGivenEmptyString(): void
     {
         $html = '';
 
@@ -104,9 +106,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify preserves content
+     * Test that minify preserves heading and paragraph content when given structured HTML.
      */
-    public function testMinifyPreservesContent(): void
+    public function testMinifyPreservesContentWhenGivenStructuredHtml(): void
     {
         $html = '<html><body><h1>Title</h1><p>Paragraph text</p></body></html>';
 
@@ -117,9 +119,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles UTF-8 encoding
+     * Test that minify preserves multibyte characters when given UTF-8 encoded HTML.
      */
-    public function testMinifyHandlesUtf8Encoding(): void
+    public function testMinifyPreservesMultibyteCharactersWhenGivenUtf8Html(): void
     {
         $html = '<html><body><p>Café résumé naïve</p></body></html>';
 
@@ -131,9 +133,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles special characters
+     * Test that minify preserves the decoded text when given HTML entity references.
      */
-    public function testMinifyHandlesSpecialCharacters(): void
+    public function testMinifyPreservesTextWhenGivenHtmlEntities(): void
     {
         $html = '<html><body><p>&lt;div&gt; &amp; &quot;test&quot;</p></body></html>';
 
@@ -144,9 +146,9 @@ final class TidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles nested tags
+     * Test that minify preserves list items when given deeply nested tags.
      */
-    public function testMinifyHandlesNestedTags(): void
+    public function testMinifyPreservesListItemsWhenGivenNestedTags(): void
     {
         $html = <<<HTML
 <html>
@@ -168,9 +170,9 @@ HTML;
     }
 
     /**
-     * Test that minify with html5 doctype config adds doctype
+     * Test that minify prepends the doctype when the html5 doctype config is set.
      */
-    public function testMinifyWithHtml5DoctypeConfigAddsDoctype(): void
+    public function testMinifyPrependsDoctypeWhenHtml5DoctypeConfigIsSet(): void
     {
         $config = [
             'doctype' => 'html5',
@@ -185,30 +187,38 @@ HTML;
     }
 
     /**
-     * Test that minify without doctype config does not add doctype when missing
+     * Test that minify returns a string when no doctype config is provided.
      */
-    public function testMinifyWithoutDoctypeConfigDoesNotAddDoctype(): void
+    public function testMinifyReturnsStringWhenNoDoctypeConfigIsProvided(): void
     {
         $html = '<html><body>Test</body></html>';
 
         $result = $this->tidyAdapter->minify($html);
 
-        // Without explicit doctype config, tidy may or may not add it
-        // Just verify the result is a string
+        // Without an explicit doctype config tidy may or may not add one;
+        // the contract only guarantees a string is returned.
         self::assertIsString($result);
     }
 
     /**
-     * Test that minify returns original HTML when tidy clean repair fails
+     * Test that minify returns the unmodified source when tidy_clean_repair reports failure.
+     *
+     * The {@see \tidy_clean_repair()} call is intercepted by the namespaced shim in
+     * TidyCleanRepairOverride.php so the otherwise unreachable early-return guard
+     * (`return $htmlSource;`) can be exercised deterministically.
      */
-    public function testMinifyReturnsOriginalHtmlWhenTidyCleanRepairFails(): void
+    public function testMinifyReturnsUnmodifiedSourceWhenCleanRepairFails(): void
     {
-        // This is a difficult test to write since tidy_clean_repair rarely fails
-        // We'll test that the method handles the case correctly
-        $html = '<html><body>Test</body></html>';
+        $GLOBALS['__ctw_force_tidy_clean_repair_fail'] = true;
 
-        $result = $this->tidyAdapter->minify($html);
+        try {
+            $html = '<html><body>Test</body></html>';
 
-        self::assertIsString($result);
+            $result = $this->tidyAdapter->minify($html);
+
+            self::assertSame($html, $result);
+        } finally {
+            $GLOBALS['__ctw_force_tidy_clean_repair_fail'] = false;
+        }
     }
 }

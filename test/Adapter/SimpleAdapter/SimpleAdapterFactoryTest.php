@@ -21,7 +21,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke returns SimpleAdapter instance
+     * Test that invoke returns a SimpleAdapter instance when the container reports no config entry.
      */
     public function testInvokeReturnsSimpleAdapterInstance(): void
     {
@@ -35,7 +35,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke creates adapter without config when container has no config
+     * Test that invoke creates an adapter with an empty config when the container has no config entry.
      */
     public function testInvokeCreatesAdapterWithoutConfigWhenContainerHasNoConfig(): void
     {
@@ -50,7 +50,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke creates adapter with empty config when config is empty
+     * Test that invoke creates an adapter with an empty config when the container returns an empty config array.
      */
     public function testInvokeCreatesAdapterWithEmptyConfigWhenConfigIsEmpty(): void
     {
@@ -67,7 +67,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke creates adapter with config when provided
+     * Test that invoke creates an adapter populated with the adapter config when the container provides it under the middleware and adapter keys.
      */
     public function testInvokeCreatesAdapterWithConfigWhenProvided(): void
     {
@@ -94,7 +94,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles nested config correctly
+     * Test that invoke selects only the adapter's config when the container provides config containing multiple adapter entries.
      */
     public function testInvokeHandlesNestedConfigCorrectly(): void
     {
@@ -124,7 +124,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles missing middleware config key
+     * Test that invoke creates an adapter with an empty config when the config lacks the middleware key.
      */
     public function testInvokeHandlesMissingMiddlewareConfigKey(): void
     {
@@ -147,7 +147,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles missing adapter config key
+     * Test that invoke creates an adapter with an empty config when the middleware config lacks the adapter key.
      */
     public function testInvokeHandlesMissingAdapterConfigKey(): void
     {
@@ -172,7 +172,7 @@ final class SimpleAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles empty adapter config array
+     * Test that invoke creates an adapter with an empty config when the adapter config key maps to an empty array.
      */
     public function testInvokeHandlesEmptyAdapterConfigArray(): void
     {

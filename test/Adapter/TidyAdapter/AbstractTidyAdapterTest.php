@@ -28,7 +28,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess trims whitespace
+     * Test that postProcess trims surrounding whitespace when the input is padded with leading and trailing spaces, tabs, and newlines.
      */
     public function testPostProcessTrimsWhitespace(): void
     {
@@ -41,7 +41,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles empty string
+     * Test that postProcess returns an empty string when the input is an empty string.
      */
     public function testPostProcessHandlesEmptyString(): void
     {
@@ -54,7 +54,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess does not add doctype when config missing
+     * Test that postProcess returns the input unchanged when no config has been set.
      */
     public function testPostProcessDoesNotAddDoctypeWhenConfigMissing(): void
     {
@@ -67,7 +67,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess does not add doctype when doctype config not set
+     * Test that postProcess returns the input unchanged when the config has no doctype key.
      */
     public function testPostProcessDoesNotAddDoctypeWhenDoctypeConfigNotSet(): void
     {
@@ -83,7 +83,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess does not add doctype when not html5
+     * Test that postProcess returns the input unchanged when the doctype config is a non-html5 value.
      */
     public function testPostProcessDoesNotAddDoctypeWhenNotHtml5(): void
     {
@@ -99,7 +99,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess adds doctype when html5 and missing
+     * Test that postProcess prepends the HTML5 doctype when the doctype config is html5 and the input has no doctype.
      */
     public function testPostProcessAddsDoctypeWhenHtml5AndMissing(): void
     {
@@ -115,7 +115,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess does not duplicate doctype when already present
+     * Test that postProcess leaves the input unchanged when the doctype config is html5 and the input already starts with a doctype.
      */
     public function testPostProcessDoesNotDuplicateDoctypeWhenAlreadyPresent(): void
     {
@@ -131,7 +131,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess adds doctype with newline separator
+     * Test that postProcess separates the prepended HTML5 doctype from the HTML with a newline when the doctype config is html5.
      */
     public function testPostProcessAddsDoctypeWithNewlineSeparator(): void
     {
@@ -147,7 +147,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess trims before adding doctype
+     * Test that postProcess trims surrounding whitespace before prepending the HTML5 doctype when the doctype config is html5 and the input is padded.
      */
     public function testPostProcessTrimsBeforeAddingDoctype(): void
     {
@@ -163,7 +163,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles html5 doctype with different cases
+     * Test that postProcess prepends the HTML5 doctype when the doctype config exactly matches the lowercase html5 value.
      */
     public function testPostProcessHandlesHtml5DoctypeWithExactCase(): void
     {
@@ -178,7 +178,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess does not add doctype for HTML5 uppercase
+     * Test that postProcess returns the input unchanged when the doctype config is the uppercase HTML5 value rather than lowercase html5.
      */
     public function testPostProcessDoesNotAddDoctypeForHtml5Uppercase(): void
     {
@@ -195,7 +195,7 @@ final class AbstractTidyAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles whitespace-only string with html5 config
+     * Test that postProcess returns only the HTML5 doctype followed by a newline when the doctype config is html5 and the input is whitespace-only.
      */
     public function testPostProcessHandlesWhitespaceOnlyStringWithHtml5Config(): void
     {

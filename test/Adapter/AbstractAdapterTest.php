@@ -28,7 +28,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that getConfig returns empty array by default
+     * Test that getConfig returns an empty array when no configuration has been set.
      */
     public function testGetConfigReturnsEmptyArrayByDefault(): void
     {
@@ -39,7 +39,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that setConfig sets configuration correctly
+     * Test that setConfig stores the given configuration and returns the adapter when passed a populated array.
      */
     public function testSetConfigSetsConfigurationCorrectly(): void
     {
@@ -55,7 +55,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that setConfig returns self for method chaining
+     * Test that setConfig returns the same adapter instance when called, allowing method chaining.
      */
     public function testSetConfigReturnsSelfForMethodChaining(): void
     {
@@ -69,7 +69,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that setConfig overwrites previous configuration
+     * Test that setConfig replaces the stored configuration when called a second time with a different array.
      */
     public function testSetConfigOverwritesPreviousConfiguration(): void
     {
@@ -87,7 +87,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that setConfig handles empty array
+     * Test that setConfig clears the stored configuration when passed an empty array after a populated one.
      */
     public function testSetConfigHandlesEmptyArray(): void
     {
@@ -100,7 +100,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that trim removes whitespace from both sides
+     * Test that trim removes whitespace from both sides when given a string padded with leading and trailing whitespace.
      */
     public function testTrimRemovesWhitespaceFromBothSides(): void
     {
@@ -113,7 +113,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that trim handles string with no whitespace
+     * Test that trim returns the input unchanged when given a string that has no surrounding whitespace.
      */
     public function testTrimHandlesStringWithNoWhitespace(): void
     {
@@ -126,7 +126,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that trim handles empty string
+     * Test that trim returns an empty string when given an empty string.
      */
     public function testTrimHandlesEmptyString(): void
     {
@@ -139,7 +139,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that trim handles string with only whitespace
+     * Test that trim returns an empty string when given a string composed entirely of whitespace.
      */
     public function testTrimHandlesStringWithOnlyWhitespace(): void
     {
@@ -152,7 +152,7 @@ final class AbstractAdapterTest extends TestCase
     }
 
     /**
-     * Test that trim handles string with internal whitespace
+     * Test that trim removes only the surrounding whitespace when given a string that also contains internal whitespace.
      */
     public function testTrimHandlesStringWithInternalWhitespace(): void
     {

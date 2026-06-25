@@ -26,7 +26,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that invoke returns array with dependencies key
+     * Test that invoke returns an array containing the dependencies key when the config provider is invoked.
      */
     public function testInvokeReturnsArrayWithDependenciesKey(): void
     {
@@ -37,7 +37,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that invoke returns correct structure
+     * Test that invoke returns an array wrapping the dependencies under the dependencies key when the config provider is invoked.
      */
     public function testInvokeReturnsCorrectStructure(): void
     {
@@ -51,7 +51,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that getDependencies returns array with factories key
+     * Test that getDependencies returns an array containing the factories key when called.
      */
     public function testGetDependenciesReturnsArrayWithFactoriesKey(): void
     {
@@ -62,7 +62,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that getDependencies returns all required factories
+     * Test that getDependencies registers factories for the middleware and all adapters when called.
      */
     public function testGetDependenciesReturnsAllRequiredFactories(): void
     {
@@ -78,7 +78,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that getDependencies maps middleware to correct factory
+     * Test that getDependencies maps the middleware to its factory when called.
      */
     public function testGetDependenciesMapsMiddlewareToCorrectFactory(): void
     {
@@ -89,7 +89,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that getDependencies maps SimpleAdapter to correct factory
+     * Test that getDependencies maps the SimpleAdapter to its factory when called.
      */
     public function testGetDependenciesMapsSimpleAdapterToCorrectFactory(): void
     {
@@ -100,7 +100,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that getDependencies maps WyriHaximusAdapter to correct factory
+     * Test that getDependencies maps the WyriHaximusAdapter to its factory when called.
      */
     public function testGetDependenciesMapsWyriHaximusAdapterToCorrectFactory(): void
     {
@@ -111,7 +111,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that getDependencies maps TidyAdapter to correct factory
+     * Test that getDependencies maps the TidyAdapter to its factory when called.
      */
     public function testGetDependenciesMapsTidyAdapterToCorrectFactory(): void
     {
@@ -122,7 +122,7 @@ final class ConfigProviderTest extends TestCase
     }
 
     /**
-     * Test that factories array has exactly four entries
+     * Test that getDependencies registers exactly four factories when called.
      */
     public function testGetDependenciesFactoriesHasExactlyFourEntries(): void
     {

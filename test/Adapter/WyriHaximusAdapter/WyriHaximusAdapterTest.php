@@ -42,7 +42,7 @@ final class WyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify returns string
+     * Test that minify returns a string when given a simple HTML document.
      */
     public function testMinifyReturnsString(): void
     {
@@ -54,7 +54,7 @@ final class WyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify handles basic HTML
+     * Test that minify retains the text content when given basic HTML with a paragraph.
      */
     public function testMinifyHandlesBasicHtml(): void
     {
@@ -66,7 +66,7 @@ final class WyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that minify reduces HTML size
+     * Test that minify produces a shorter result when given indented, whitespace-heavy HTML.
      */
     public function testMinifyReducesHtmlSize(): void
     {
@@ -89,7 +89,7 @@ HTML;
     }
 
     /**
-     * Test that minify removes spaces between tags
+     * Test that minify removes the spaces between tags when given HTML with double spaces before tags.
      */
     public function testMinifyRemovesSpacesBetweenTags(): void
     {
@@ -102,7 +102,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles empty string
+     * Test that minify returns a string when given an empty string.
      */
     public function testMinifyHandlesEmptyString(): void
     {
@@ -114,7 +114,7 @@ HTML;
     }
 
     /**
-     * Test that minify preserves content
+     * Test that minify preserves the heading and paragraph text when given HTML with multiple content elements.
      */
     public function testMinifyPreservesContent(): void
     {
@@ -127,7 +127,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML without HTTP_HOST set
+     * Test that minify returns a string retaining the link text when no HTTP_HOST server variable is set.
      */
     public function testMinifyHandlesHtmlWithoutHttpHostSet(): void
     {
@@ -141,7 +141,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with HTTP_HOST set
+     * Test that minify returns a string retaining the link text when the HTTP_HOST server variable is set.
      */
     public function testMinifyHandlesHtmlWithHttpHostSet(): void
     {
@@ -155,7 +155,7 @@ HTML;
     }
 
     /**
-     * Test that minify makes same domain links relative
+     * Test that minify returns a string when the HTTP_HOST matches the absolute link domain so same-domain links can be made relative.
      */
     public function testMinifyMakesSameDomainLinksRelative(): void
     {
@@ -169,7 +169,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles nested tags
+     * Test that minify retains all list item text when given HTML with deeply nested tags.
      */
     public function testMinifyHandlesNestedTags(): void
     {
@@ -193,7 +193,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with classes
+     * Test that minify retains the text content when given HTML elements carrying class attributes.
      */
     public function testMinifyHandlesHtmlWithClasses(): void
     {
@@ -205,7 +205,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with inline styles
+     * Test that minify retains the text content when given an element with an inline style attribute.
      */
     public function testMinifyHandlesHtmlWithInlineStyles(): void
     {
@@ -217,7 +217,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles complex HTML document
+     * Test that minify retains the heading, paragraph, and footer text when given a complete, structured HTML document.
      */
     public function testMinifyHandlesComplexHtmlDocument(): void
     {
@@ -252,7 +252,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with script tags
+     * Test that minify retains the surrounding text content when the HTML contains a script tag.
      */
     public function testMinifyHandlesHtmlWithScriptTags(): void
     {
@@ -264,7 +264,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles HTML with style tags
+     * Test that minify retains the body text content when the HTML contains a style tag in the head.
      */
     public function testMinifyHandlesHtmlWithStyleTags(): void
     {
@@ -276,7 +276,7 @@ HTML;
     }
 
     /**
-     * Test that minify handles UTF-8 characters
+     * Test that minify preserves the UTF-8 accented words when the HTML contains multibyte characters.
      */
     public function testMinifyHandlesUtf8Characters(): void
     {

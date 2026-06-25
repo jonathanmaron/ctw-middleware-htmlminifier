@@ -21,7 +21,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke returns WyriHaximusAdapter instance
+     * Test that invoking the factory returns a WyriHaximusAdapter instance when the container reports no config.
      */
     public function testInvokeReturnsWyriHaximusAdapterInstance(): void
     {
@@ -35,7 +35,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke creates adapter without config when container has no config
+     * Test that invoking the factory creates an adapter with an empty config when the container has no config entry.
      */
     public function testInvokeCreatesAdapterWithoutConfigWhenContainerHasNoConfig(): void
     {
@@ -50,7 +50,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke creates adapter with empty config when config is empty
+     * Test that invoking the factory creates an adapter with an empty config when the container returns an empty config array.
      */
     public function testInvokeCreatesAdapterWithEmptyConfigWhenConfigIsEmpty(): void
     {
@@ -67,7 +67,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke creates adapter with config when provided
+     * Test that invoking the factory creates an adapter carrying the adapter config when the container provides matching middleware and adapter config keys.
      */
     public function testInvokeCreatesAdapterWithConfigWhenProvided(): void
     {
@@ -94,7 +94,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles nested config correctly
+     * Test that invoking the factory extracts only the adapter config when the middleware config also contains other adapter entries.
      */
     public function testInvokeHandlesNestedConfigCorrectly(): void
     {
@@ -124,7 +124,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles missing middleware config key
+     * Test that invoking the factory creates an adapter with an empty config when the config lacks the middleware config key.
      */
     public function testInvokeHandlesMissingMiddlewareConfigKey(): void
     {
@@ -147,7 +147,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles missing adapter config key
+     * Test that invoking the factory creates an adapter with an empty config when the middleware config lacks the adapter config key.
      */
     public function testInvokeHandlesMissingAdapterConfigKey(): void
     {
@@ -172,7 +172,7 @@ final class WyriHaximusAdapterFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles empty adapter config array
+     * Test that invoking the factory creates an adapter with an empty config when the adapter config key maps to an empty array.
      */
     public function testInvokeHandlesEmptyAdapterConfigArray(): void
     {

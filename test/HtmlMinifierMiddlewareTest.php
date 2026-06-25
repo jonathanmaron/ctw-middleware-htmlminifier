@@ -27,7 +27,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that getAdapter returns set adapter
+     * Test that getAdapter returns the same adapter instance when an adapter has been set.
      */
     public function testGetAdapterReturnsSetAdapter(): void
     {
@@ -40,7 +40,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that setAdapter returns self for method chaining
+     * Test that setAdapter returns the middleware instance to allow method chaining when an adapter is set.
      */
     public function testSetAdapterReturnsSelfForMethodChaining(): void
     {
@@ -52,7 +52,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that setAdapter sets adapter correctly
+     * Test that setAdapter stores the adapter so getAdapter returns it when an adapter is set.
      */
     public function testSetAdapterSetsAdapterCorrectly(): void
     {
@@ -64,7 +64,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process returns response unchanged when not HTML
+     * Test that process returns the response unchanged when the content type is not HTML.
      */
     public function testProcessReturnsResponseUnchangedWhenNotHtml(): void
     {
@@ -83,7 +83,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process returns response unchanged when no content type header
+     * Test that process returns the response unchanged when the response has no content type header.
      */
     public function testProcessReturnsResponseUnchangedWhenNoContentTypeHeader(): void
     {
@@ -102,7 +102,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process minifies HTML when content type is text/html
+     * Test that process minifies the body and returns a response when the content type is text/html.
      */
     public function testProcessMinifiesHtmlWhenContentTypeIsTextHtml(): void
     {
@@ -133,7 +133,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process minifies HTML when content type is application/xhtml
+     * Test that process minifies the body and returns a response when the content type is application/xhtml.
      */
     public function testProcessMinifiesHtmlWhenContentTypeIsApplicationXhtml(): void
     {
@@ -164,7 +164,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process returns response unchanged when HTML body is empty
+     * Test that process returns the response unchanged when the HTML response body is empty.
      */
     public function testProcessReturnsResponseUnchangedWhenHtmlBodyIsEmpty(): void
     {
@@ -188,7 +188,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process calls adapter minify method
+     * Test that process calls the adapter minify method once with the original HTML when the content type is text/html.
      */
     public function testProcessCallsAdapterMinifyMethod(): void
     {
@@ -222,7 +222,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process adds statistics suffix to minified HTML
+     * Test that process writes a new stream body onto the response when the HTML content is minified.
      */
     public function testProcessAddsStatisticsSuffixToMinifiedHtml(): void
     {
@@ -254,7 +254,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process handles HTML with charset in content type
+     * Test that process minifies the body and returns a response when the content type includes a charset.
      */
     public function testProcessHandlesHtmlWithCharsetInContentType(): void
     {
@@ -285,7 +285,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process handles multiple content type headers
+     * Test that process minifies the body and returns a response when the content type header has multiple values.
      */
     public function testProcessHandlesMultipleContentTypeHeaders(): void
     {
@@ -316,7 +316,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process does not minify when content type is text/plain
+     * Test that process never calls the adapter and returns the response unchanged when the content type is text/plain.
      */
     public function testProcessDoesNotMinifyWhenContentTypeIsTextPlain(): void
     {
@@ -339,7 +339,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process does not minify when content type is application/json
+     * Test that process never calls the adapter and returns the response unchanged when the content type is application/json.
      */
     public function testProcessDoesNotMinifyWhenContentTypeIsApplicationJson(): void
     {
@@ -362,7 +362,7 @@ final class HtmlMinifierMiddlewareTest extends TestCase
     }
 
     /**
-     * Test that process handles complex HTML document
+     * Test that process minifies the body and returns a response when given a complex multi-line HTML document.
      */
     public function testProcessHandlesComplexHtmlDocument(): void
     {
@@ -406,7 +406,7 @@ HTML;
     }
 
     /**
-     * Test that process creates new stream with minified content
+     * Test that process returns the new response produced by withBody when the minified content is written to a new stream.
      */
     public function testProcessCreatesNewStreamWithMinifiedContent(): void
     {

@@ -28,7 +28,7 @@ final class AbstractWyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess returns input unchanged
+     * Test that postProcess returns the input unchanged when given a simple HTML document.
      */
     public function testPostProcessReturnsInputUnchanged(): void
     {
@@ -41,7 +41,7 @@ final class AbstractWyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles empty string
+     * Test that postProcess returns an empty string when the input is an empty string.
      */
     public function testPostProcessHandlesEmptyString(): void
     {
@@ -54,7 +54,7 @@ final class AbstractWyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess preserves whitespace
+     * Test that postProcess preserves surrounding whitespace when the input is padded with spaces, tabs, and newlines.
      */
     public function testPostProcessPreservesWhitespace(): void
     {
@@ -67,7 +67,7 @@ final class AbstractWyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess preserves leading whitespace
+     * Test that postProcess preserves leading whitespace when the input begins with spaces.
      */
     public function testPostProcessPreservesLeadingWhitespace(): void
     {
@@ -80,7 +80,7 @@ final class AbstractWyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess preserves trailing whitespace
+     * Test that postProcess preserves trailing whitespace when the input ends with spaces.
      */
     public function testPostProcessPreservesTrailingWhitespace(): void
     {
@@ -93,7 +93,7 @@ final class AbstractWyriHaximusAdapterTest extends TestCase
     }
 
     /**
-     * Test that postProcess handles complex HTML
+     * Test that postProcess returns the input unchanged when given a multi-line, indented complex HTML document.
      */
     public function testPostProcessHandlesComplexHtml(): void
     {
@@ -115,7 +115,7 @@ HTML;
     }
 
     /**
-     * Test that postProcess handles HTML with newlines
+     * Test that postProcess returns the input unchanged when the HTML contains embedded newlines.
      */
     public function testPostProcessHandlesHtmlWithNewlines(): void
     {
@@ -128,7 +128,7 @@ HTML;
     }
 
     /**
-     * Test that postProcess handles HTML with tabs
+     * Test that postProcess returns the input unchanged when the HTML contains embedded tabs.
      */
     public function testPostProcessHandlesHtmlWithTabs(): void
     {
@@ -141,7 +141,7 @@ HTML;
     }
 
     /**
-     * Test that postProcess handles special characters
+     * Test that postProcess returns the input unchanged when the HTML contains escaped special character entities.
      */
     public function testPostProcessHandlesSpecialCharacters(): void
     {
@@ -154,7 +154,7 @@ HTML;
     }
 
     /**
-     * Test that postProcess handles UTF-8 characters
+     * Test that postProcess returns the input unchanged when the HTML contains UTF-8 accented characters.
      */
     public function testPostProcessHandlesUtf8Characters(): void
     {

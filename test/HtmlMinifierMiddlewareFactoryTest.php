@@ -23,7 +23,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke returns HtmlMinifierMiddleware instance
+     * Test that invoke returns an HtmlMinifierMiddleware instance when the container provides valid config and an adapter.
      */
     public function testInvokeReturnsHtmlMinifierMiddlewareInstance(): void
     {
@@ -48,7 +48,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke throws exception when config has no elements
+     * Test that invoke throws an exception when the middleware config is an empty array.
      */
     public function testInvokeThrowsExceptionWhenConfigHasNoElements(): void
     {
@@ -69,7 +69,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke throws exception when config has multiple elements
+     * Test that invoke throws an exception when the middleware config contains more than one element.
      */
     public function testInvokeThrowsExceptionWhenConfigHasMultipleElements(): void
     {
@@ -93,7 +93,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke creates middleware without config when container has no config
+     * Test that invoke throws an exception when the container reports no config and returns a non-array value.
      */
     public function testInvokeCreatesMiddlewareWhenContainerHasNoConfig(): void
     {
@@ -113,7 +113,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke retrieves adapter from container
+     * Test that invoke retrieves the configured adapter from the container and sets it on the middleware when the config is valid.
      */
     public function testInvokeRetrievesAdapterFromContainer(): void
     {
@@ -138,7 +138,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke sets adapter on middleware
+     * Test that invoke sets the resolved adapter on the returned middleware when the config references a custom adapter class.
      */
     public function testInvokeSetsAdapterOnMiddleware(): void
     {
@@ -168,7 +168,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles config with exactly one adapter
+     * Test that invoke returns an HtmlMinifierMiddleware instance when the config contains exactly one adapter with options.
      */
     public function testInvokeHandlesConfigWithExactlyOneAdapter(): void
     {
@@ -193,7 +193,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke extracts first key as adapter class name
+     * Test that invoke uses the first config key as the adapter class name and sets the resolved adapter when the config is valid.
      */
     public function testInvokeExtractsFirstKeyAsAdapterClassName(): void
     {
@@ -226,7 +226,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke throws exception when middleware config is missing
+     * Test that invoke throws an exception when the config does not contain the middleware key.
      */
     public function testInvokeThrowsExceptionWhenMiddlewareConfigIsMissing(): void
     {
@@ -249,7 +249,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
     }
 
     /**
-     * Test that invoke handles empty global config
+     * Test that invoke throws an exception when the global config is an empty array.
      */
     public function testInvokeHandlesEmptyGlobalConfig(): void
     {
