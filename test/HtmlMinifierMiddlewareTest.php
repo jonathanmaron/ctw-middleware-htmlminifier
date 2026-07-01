@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace CtwTest\Middleware\HtmlMinifierMiddleware;
 
+use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\AbstractAdapter;
 use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\AdapterInterface;
 use Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware;
+use Middlewares\Utils\Factory;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -435,5 +437,83 @@ HTML;
         $result = $this->htmlMinifierMiddleware->process($request, $handler);
 
         self::assertInstanceOf(ResponseInterface::class, $result);
+    }
+
+    /**
+     * Test that process appends a zero-percent saving suffix when the minified body is identical in size to the original.
+     */
+    public function testProcessAppendsZeroPercentSavingSuffixWhenSizeUnchanged(): void
+    {
+        $html = '<p>Hi</p>';
+
+        $body = $this->processAndCaptureBody($html, $html);
+
+        self::assertStringStartsWith('<p>Hi</p>' . PHP_EOL, $body);
+        self::assertStringContainsString('<!-- html: in 9 b | out 9 b | diff 0.0000 % -->', $body);
+    }
+
+    /**
+     * Test that process appends a full-saving suffix reporting zero output bytes when the body minifies to an empty string.
+     */
+    public function testProcessAppendsFullSavingSuffixWhenBodyMinifiesToEmpty(): void
+    {
+        $body = $this->processAndCaptureBody('<p>Hi</p>', '');
+
+        self::assertStringContainsString('<!-- html: in 9 b | out 0 b | diff 100.0000 % -->', $body);
+    }
+
+    /**
+     * Test that process appends a proportional saving suffix when the minified body is half the size of the original.
+     */
+    public function testProcessAppendsProportionalSavingSuffixWhenBodyHalved(): void
+    {
+        $body = $this->processAndCaptureBody(str_repeat('A', 20), str_repeat('B', 10));
+
+        self::assertStringContainsString('<!-- html: in 20 b | out 10 b | diff 50.0000 % -->', $body);
+    }
+
+    /**
+     * Runs the middleware against real PSR-7 objects and an adapter returning a fixed minified body, returning the emitted body string.
+     */
+    private function processAndCaptureBody(string $htmlSource, string $htmlMinified): string
+    {
+        $adapter = new class($htmlMinified) extends AbstractAdapter implements AdapterInterface {
+            public function __construct(
+                private readonly string $htmlMinified
+            ) {
+            }
+
+            public function minify(string $htmlSource): string
+            {
+                return $this->htmlMinified;
+            }
+        };
+
+        $middleware = new HtmlMinifierMiddleware();
+        $middleware->setAdapter($adapter);
+
+        $response = Factory::getResponseFactory()
+            ->createResponse()
+            ->withHeader('Content-Type', 'text/html')
+            ->withBody(Factory::getStreamFactory()->createStream($htmlSource));
+
+        $handler = new class($response) implements RequestHandlerInterface {
+            public function __construct(
+                private readonly ResponseInterface $response
+            ) {
+            }
+
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                return $this->response;
+            }
+        };
+
+        $request = Factory::getServerRequestFactory()
+            ->createServerRequest('GET', '/');
+
+        $result = $middleware->process($request, $handler);
+
+        return (string) $result->getBody();
     }
 }
