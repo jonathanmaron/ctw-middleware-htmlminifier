@@ -497,9 +497,9 @@ HTML;
             ->withHeader('Content-Type', 'text/html')
             ->withBody(Factory::getStreamFactory()->createStream($htmlSource));
 
-        $handler = new class($response) implements RequestHandlerInterface {
+        $handler = new readonly class($response) implements RequestHandlerInterface {
             public function __construct(
-                private readonly ResponseInterface $response
+                private ResponseInterface $response
             ) {
             }
 
