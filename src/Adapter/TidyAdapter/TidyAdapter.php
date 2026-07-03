@@ -8,12 +8,14 @@ use tidy;
 
 class TidyAdapter extends AbstractTidyAdapter implements AdapterInterface
 {
+    #[\Override]
+    #[\NoDiscard]
     public function minify(string $htmlSource): string
     {
         $tidy = tidy_parse_string($htmlSource, $this->getConfig(), 'utf8');
         assert($tidy instanceof tidy);
 
-        //dd($tidy->errorBuffer);
+        // dd($tidy->errorBuffer);
 
         if (!tidy_clean_repair($tidy)) {
             return $htmlSource;

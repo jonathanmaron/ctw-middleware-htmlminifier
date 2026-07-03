@@ -7,6 +7,8 @@ use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\AdapterInterface;
 
 class SimpleAdapter extends AbstractSimpleAdapter implements AdapterInterface
 {
+    #[\Override]
+    #[\NoDiscard]
     public function minify(string $htmlSource): string
     {
         $lut = [

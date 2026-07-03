@@ -7,5 +7,6 @@ interface AdapterInterface
 {
     public function setConfig(array $config): AbstractAdapter;
 
+    #[\NoDiscard]
     public function minify(string $htmlSource): string;
 }

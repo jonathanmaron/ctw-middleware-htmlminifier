@@ -25,6 +25,7 @@ class HtmlMinifierMiddleware extends AbstractHtmlMinifierMiddleware
         return $this;
     }
 
+    #[\Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = $handler->handle($request);

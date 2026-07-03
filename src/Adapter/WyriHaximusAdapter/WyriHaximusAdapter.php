@@ -9,6 +9,8 @@ use WyriHaximus\HtmlCompress\Factory;
 
 class WyriHaximusAdapter extends AbstractWyriHaximusAdapter implements AdapterInterface
 {
+    #[\Override]
+    #[\NoDiscard]
     public function minify(string $htmlSource): string
     {
         /** @phpstan-ignore class.notFound */
