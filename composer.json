@@ -12,7 +12,8 @@
     "require-dev": {
         "ctw/ctw-qa": "^6.0",
         "phpunit/phpunit": "^13.0",
-        "symfony/var-dumper": "^8.0"
+        "symfony/var-dumper": "^8.0",
+        "wyrihaximus/html-compress": "^4.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

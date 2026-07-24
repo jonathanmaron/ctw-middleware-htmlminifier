@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace CtwTest\Middleware\HtmlMinifierMiddleware\Adapter\WyriHaximusAdapter;
 
 use Ctw\Middleware\HtmlMinifierMiddleware\Adapter\WyriHaximusAdapter\WyriHaximusAdapter;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\TestCase;
 
+// The optional voku/html-min library triggers a PHP 8.5 deprecation internally
+// (SplObjectStorage::attach()), which is outside this package's control.
+#[IgnoreDeprecations]
 final class WyriHaximusAdapterTest extends TestCase
 {
     private WyriHaximusAdapter $wyriHaximusAdapter;
