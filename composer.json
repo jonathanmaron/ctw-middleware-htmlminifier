@@ -7,13 +7,22 @@
         "php": "^8.5",
         "ext-tidy": "*",
         "ctw/ctw-middleware": "^5.0",
-        "psr/container": "^1.0 || ^2.0"
+        "middlewares/utils": "^4.0",
+        "psr/container": "^1.0 || ^2.0",
+        "psr/http-message": "^1.1 || ^2.0",
+        "psr/http-server-handler": "^1.0"
     },
     "require-dev": {
         "ctw/ctw-qa": "^6.0",
+        "laminas/laminas-diactoros": "^3.0",
         "phpunit/phpunit": "^13.3",
         "symfony/var-dumper": "^8.0",
+        "voku/html-min": "^4.5",
         "wyrihaximus/html-compress": "^4.4"
+    },
+    "suggest": {
+        "voku/html-min": "Required by the WyriHaximus adapter, which minifies with WyriHaximus\\HtmlCompress.",
+        "wyrihaximus/html-compress": "Required by the WyriHaximus adapter; without it only the simple and tidy adapters can be selected."
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
