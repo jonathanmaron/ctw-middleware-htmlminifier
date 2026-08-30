@@ -17,7 +17,7 @@ class WyriHaximusAdapter extends AbstractWyriHaximusAdapter implements AdapterIn
         $htmlMin = new HtmlMin();
 
         $httpHost = '';
-        if (isset($_SERVER['HTTP_HOST'])) {
+        if (isset($_SERVER['HTTP_HOST']) && is_string($_SERVER['HTTP_HOST'])) {
             $httpHost = $_SERVER['HTTP_HOST'];
         }
 
@@ -96,7 +96,6 @@ class WyriHaximusAdapter extends AbstractWyriHaximusAdapter implements AdapterIn
 
         /** @phpstan-ignore class.notFound, method.nonObject */
         $htmlModified = Factory::constructSmallest()->withHtmlMin($htmlMin)->compress($htmlSource);
-        assert(is_string($htmlModified));
 
         return $this->postProcess($htmlModified);
     }

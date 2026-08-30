@@ -13,30 +13,6 @@ parameters:
 			path: src/Adapter/TidyAdapter/TidyAdapterFactory.php
 
 		-
-			message: '#^Call to method doMakeSameDomainsLinksRelative\(\) on an unknown class voku\\helper\\HtmlMin\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
-
-		-
-			message: '#^Call to method doRemoveOmittedQuotes\(\) on an unknown class voku\\helper\\HtmlMin\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
-
-		-
-			message: '#^Call to method doRemoveSpacesBetweenTags\(\) on an unknown class voku\\helper\\HtmlMin\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
-
-		-
-			message: '#^Cannot call method withHtmlMin\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/Adapter/WyriHaximusAdapter/WyriHaximusAdapter.php
-
-		-
 			message: '#^Call to function is_countable\(\) with array\<mixed\> will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 1
@@ -105,7 +81,7 @@ parameters:
 		-
 			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertIsString\(\) with string will always evaluate to true\.$#'
 			identifier: staticMethod.alreadyNarrowedType
-			count: 7
+			count: 6
 			path: test/Adapter/TidyAdapter/TidyAdapterTest.php
 
 		-
@@ -163,7 +139,7 @@ parameters:
 			path: test/ConfigProviderTest.php
 
 		-
-			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), covariant mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: test/ConfigProviderTest.php
@@ -181,12 +157,6 @@ parameters:
 			path: test/HtmlMinifierMiddlewareFactoryTest.php
 
 		-
-			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\AdapterInterface\:\:expects\(\)\.$#'
-			identifier: method.notFound
-			count: 3
-			path: test/HtmlMinifierMiddlewareTest.php
-
-		-
 			message: '#^Call to an undefined method Ctw\\Middleware\\HtmlMinifierMiddleware\\Adapter\\AdapterInterface\:\:method\(\)\.$#'
 			identifier: method.notFound
 			count: 7
@@ -199,19 +169,7 @@ parameters:
 			path: test/HtmlMinifierMiddlewareTest.php
 
 		-
-			message: '#^Cannot call method method\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: test/HtmlMinifierMiddlewareTest.php
-
-		-
 			message: '#^Cannot call method willReturn\(\) on mixed\.$#'
 			identifier: method.nonObject
-			count: 8
-			path: test/HtmlMinifierMiddlewareTest.php
-
-		-
-			message: '#^Cannot call method with\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 8
+			count: 7
 			path: test/HtmlMinifierMiddlewareTest.php
