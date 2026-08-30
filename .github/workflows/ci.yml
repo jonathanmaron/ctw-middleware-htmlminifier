@@ -40,6 +40,7 @@ on:
             - '**/*.phtml'
             - 'composer.json'
             - 'phpunit.xml.dist'
+            - 'composer-require-checker.json'
             - '.github/workflows/**'
     schedule:
         # Weekly, Monday 04:17 UTC. The odd minute keeps it off the hour, where
@@ -66,6 +67,15 @@ jobs:
             # is reliably green, move it into php_versions, where it blocks, and
             # drop this.
             php_versions_canary: '["8.6"]'
+
+            # WyriHaximusAdapter is one of three adapters and the only one
+            # with a dependency of its own. voku/html-min and
+            # wyrihaximus/html-compress stay in require-dev, so a consumer
+            # picking SimpleAdapter or TidyAdapter does not install a
+            # compressor it will never call. The require checker has no concept
+            # of an optional dependency and reports both symbols as unknown, so
+            # they are whitelisted rather than promoted to require.
+            composer_requirements_config: 'composer-require-checker.json'
 
             # Every job is on by default. Uncomment to switch one off.
             #
