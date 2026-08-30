@@ -61,7 +61,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ]);
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage(
+        $this->expectExceptionMessageIsOrContains(
             'The config key for "Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware" must be an array with one element'
         );
 
@@ -85,7 +85,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ]);
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage(
+        $this->expectExceptionMessageIsOrContains(
             'The config key for "Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware" must be an array with one element'
         );
 
@@ -105,7 +105,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ->willReturn($adapter);
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage(
+        $this->expectExceptionMessageIsOrContains(
             'The config key for "Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware" must be an array with one element'
         );
 
@@ -241,7 +241,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ]);
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage(
+        $this->expectExceptionMessageIsOrContains(
             'The config key for "Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware" must be an array with one element'
         );
 
@@ -260,7 +260,7 @@ final class HtmlMinifierMiddlewareFactoryTest extends TestCase
             ->willReturn([]);
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage(
+        $this->expectExceptionMessageIsOrContains(
             'The config key for "Ctw\Middleware\HtmlMinifierMiddleware\HtmlMinifierMiddleware" must be an array with one element'
         );
 
