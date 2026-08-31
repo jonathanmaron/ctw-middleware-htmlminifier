@@ -26,6 +26,7 @@ return (static function (): ECSConfigBuilder {
         ->withPaths([
             sprintf('%s/src', __DIR__),
             sprintf('%s/test', __DIR__),
+            sprintf('%s/composer-dependency-analyser.php', __DIR__),
             sprintf('%s/ecs.php', __DIR__),
             sprintf('%s/rector.php', __DIR__),
         ])

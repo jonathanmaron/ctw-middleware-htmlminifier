@@ -71,15 +71,6 @@ jobs:
             #
             # php_versions_canary: '["8.6"]'
 
-            # WyriHaximusAdapter is one of three adapters and the only one
-            # with a dependency of its own. voku/html-min and
-            # wyrihaximus/html-compress stay in require-dev, so a consumer
-            # picking SimpleAdapter or TidyAdapter does not install a
-            # compressor it will never call. The require checker has no concept
-            # of an optional dependency and reports both symbols as unknown, so
-            # they are whitelisted rather than promoted to require.
-            composer_requirements_config: 'composer-require-checker.json'
-
             # Every job is on by default. Uncomment to switch one off.
             #
             # phpunit: false
@@ -90,8 +81,6 @@ jobs:
             # composer_validate: false
             # composer_normalize: false
             # composer_audit: false
-            # composer_requirements: false
-            # composer_unused: false
+            # composer_dependencies: false
             # composer_outdated: false
             # backward_compatibility: false
-            # infection: true
